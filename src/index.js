@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore , applyMiddleware} from 'redux';
 // keep package imports at the top and file imports below that
 import './index.css';
 import App from './components/App';
 import movies from './reducers';
 
-const store = createStore(movies);
+const logger = function ({dispatch, getState})
+{
+return function (next) {
+  return function (action) {
+    // middleware code
+    console.log('ACTION_TYPE = ', action.type);
+    next(action);
+  }
+}
+
+
+}
+
+const store = createStore(movies, applyMiddleware(logger));
 console.log('store', store);
 // console.log('BEFORE STATE', store.getState());
 
