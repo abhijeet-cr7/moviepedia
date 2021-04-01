@@ -24,6 +24,7 @@ import {addMovies, setShowFavourite} from '../actions';
   }
 
   isMovieFavourite = (movie) => {
+  console.log('movie', movie);
   const { movies } = this.props.store.getState();
   const index = movies.favourites.indexOf(movie);
   if(index !== -1)
