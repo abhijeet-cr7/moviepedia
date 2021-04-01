@@ -24,8 +24,8 @@ import {addMovies, setShowFavourite} from '../actions';
   }
 
   isMovieFavourite = (movie) => {
-  const { favourites } = this.props.store.getState();
-  const index = favourites.indexOf(movie);
+  const { movies } = this.props.store.getState();
+  const index = movies.favourites.indexOf(movie);
   if(index !== -1)
   {
     // found the movie
@@ -36,13 +36,13 @@ import {addMovies, setShowFavourite} from '../actions';
 
   onChangeTab = (val) => {
   this.props.store.dispatch(setShowFavourite(val))
-   
-  
   }
   render () {
-  const { list , favourites, showFavourites} = this.props.store.getState(); 
+  const {movies}  = this.props.store.getState();
+  const { list , favourites, showFavourites} = movies; 
   // {list : [], favourites : []}
-  
+  // ab jo state hai wo rootreducer dalne k baad kuch aisa dikhega
+  // {movies : {}, search : {}}
   console.log('RENDER', this.props.store.getState());
   const displayMovies = showFavourites ? favourites : list;
   return (
